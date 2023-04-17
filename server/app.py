@@ -60,5 +60,20 @@ class Races(Resource):
     
 api.add_resource(Races, '/races')
 
+class DriverRaces(Resource):
+    def get(self):
+        dr_list = []
+        for dr in DriverRace.query.all():
+            dr_dict = {
+                'id': dr.id,
+                'driver_id': dr.driver_id,
+                'race_id': dr.race_id,
+                'time': dr.time
+            }
+            dr_list.append(dr_dict)
+        return make_response(dr_list, 200)
+    
+api.add_resource(DriverRaces, '/driver_races')
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
