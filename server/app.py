@@ -46,6 +46,15 @@ class Drivers(Resource):
     
 api.add_resource(Drivers, '/drivers')
 
+class DriverByID(Resource):
+    def get(self, id):
+        d = Driver.query.filter_by(id=id).first()
+        if d == None:
+            return make_response({'error': 'Driver not found'}, 404)
+        return make_response(d.to_dict(), 200)
+    
+api.add_resource(DriverByID, '/drivers/<int:id>')
+
 class Races(Resource):
     def get(self):
         r_list = []
@@ -59,6 +68,15 @@ class Races(Resource):
         return make_response(r_list, 200)
     
 api.add_resource(Races, '/races')
+
+class RaceByID(Resource):
+    def get(self, id):
+        r = Race.query.filter_by(id=id).first()
+        if r == None:
+            return make_response({'error': 'Race not found'}, 404)
+        return make_response(r.to_dict(), 200)
+    
+api.add_resource(RaceByID, '/races/<int:id>')
 
 class DriverRaces(Resource):
     def get(self):

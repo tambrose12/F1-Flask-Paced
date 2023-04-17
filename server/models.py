@@ -16,6 +16,8 @@ db = SQLAlchemy(metadata=metadata)
 class Driver(db.Model, SerializerMixin):
     __tablename__ = 'drivers'
 
+    serialize_rules = ('-driver_races', '-races')
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     car_number = db.Column(db.Integer)
@@ -27,6 +29,8 @@ class Driver(db.Model, SerializerMixin):
 class Race(db.Model, SerializerMixin):
     __tablename__ = 'races'
 
+    serialize_rules = ('-driver_races', '-drivers')
+
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String)
     fastest_time = db.Column(db.Float)
@@ -36,6 +40,8 @@ class Race(db.Model, SerializerMixin):
 
 class DriverRace(db.Model, SerializerMixin):
     __tablename__ = 'driver_races'
+
+    serialize_rules = ('-driver', '-race')
 
     id = db.Column(db.Integer, primary_key=True)
     driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'))
