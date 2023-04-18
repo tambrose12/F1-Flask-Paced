@@ -4,6 +4,8 @@ import Header from './Header';
 import Home from "./Home";
 import Drivers from "./Drivers"
 import DriverCard from "./DriverCard"
+import RaceCard from "./RaceCard"
+import Races from './Races'
 
 
 function App() {
@@ -18,13 +20,22 @@ function App() {
       .then(setDrivers)
   }, [])
 
+  useEffect(() => {
+    fetch('/races')
+      .then(r => r.json()) 
+      .then(setRaces)
+  }, [])
+
   let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} />)
+
+  let raceCards = races.map(race => <RaceCard key={race.id} race={race}/>)
 
   return (
     <div>
       <main>
         <Home />
         <Drivers driverCards={driverCards} />
+        <Races raceCards={raceCards} />
       </main>
     </div>
   )
