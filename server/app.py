@@ -40,7 +40,8 @@ class Drivers(Resource):
                 'id': d.id,
                 'name': d.name,
                 'car_number': d.car_number,
-                'team': d.team
+                'team': d.team,
+                'driver_image': d.driver_image
             }
             d_list.append(d_dict)
         return make_response(d_list, 200)
@@ -117,7 +118,8 @@ class Races(Resource):
             r_dict = {
                 'id': r.id,
                 'location': r.location,
-                'fastest_time': r.fastest_time
+                'fastest_time': r.fastest_time,
+                'track_image': r.track_image
             }
             r_list.append(r_dict)
         return make_response(r_list, 200)

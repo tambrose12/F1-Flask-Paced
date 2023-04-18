@@ -19,11 +19,11 @@ with app.app_context():
     DriverRace.query.delete()
     db.session.commit()
 
-    d1 = Driver(name="Lewis Hamilton", car_number=7, team="Mercedes", driver_image = 'https://static.wikia.nocookie.net/f1wikia/images/9/9f/LewisHam.png/revision/latest/scale-to-width-down/1000?cb=20220309110334') 
+    d1 = Driver(name="Lewis Hamilton", car_number=7, team="Mercedes", driver_image = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Lewis_Hamilton_2022_S%C3%A3o_Paulo_Grand_Prix_%2852498120773%29_%28cropped%29.jpg') 
     d2 = Driver(name="Max Verstappen", car_number=1, team="Red Bull", driver_image = 'https://media.formula1.com/content/dam/fom-website/drivers/2023Drivers/verstappen.jpg.img.1920.medium.jpg/1677069646195.jpg')
-    d3 = Driver(name="Carlos Sainz", car_number=5, team="Ferrari", driver_image = 'https://static.wikia.nocookie.net/f1wikia/images/6/68/CarlosSainz.png/revision/latest/scale-to-width-down/1000?cb=20220310043500')
-    d4 = Driver(name="Fernando Alonso", car_number=10, team="Aston Martin", driver_image = 'https://static.wikia.nocookie.net/f1wikia/images/1/16/FER.jpg/revision/latest/scale-to-width-down/1000?cb=20230305170132')
-    d5 = Driver(name="Lando Norris", car_number=4, team="McLaren", driver_image = 'https://static.wikia.nocookie.net/f1wikia/images/e/e6/Memelord.png/revision/latest/scale-to-width-down/1000?cb=20220310044758')
+    d3 = Driver(name="Carlos Sainz", car_number=5, team="Ferrari", driver_image = 'https://a.espncdn.com/combiner/i?img=/i/headshots/rpm/players/full/4686.png')
+    d4 = Driver(name="Fernando Alonso", car_number=10, team="Aston Martin", driver_image = 'https://cdn-5.motorsport.com/images/mgl/6AEomeD6/s800/fernando-alonso-aston-martin-r-1.jpg')
+    d5 = Driver(name="Lando Norris", car_number=4, team="McLaren", driver_image = 'https://static.wikia.nocookie.net/f1wikia/images/e/e6/Memelord.png')
 
     # # location = db.Column(db.String)
     # #     fastest_time = db.Column(db.Float)
