@@ -30,6 +30,19 @@ class Driver(db.Model, SerializerMixin):
         'DriverRace', backref='driver', cascade='all, delete-orphan')
     races = association_proxy('driver_races', 'race')
 
+    @validates('car_number')
+    def validate_car_number(self, key, car_num):
+        if type(car_num) is not int:
+            raise TypeError('Car number must be an integer')
+        elif car_num < 1 or car_num > 99:
+            raise ValueError("Invalid car number")
+        return car_num
+    
+    @validates('team')
+    def validate_team(self, key, t):
+        if t not in ['McLaren', 'Ferrari', 'Aston Martin', 'Alpine', 'Alpha Tauri', 'Williams', 'Mercedes', 'Red Bull', 'Alfa Romeo', 'Haas F1 Team']:
+            raise ValueError("Invalid team")
+        return t
 
 class Race(db.Model, SerializerMixin):
     __tablename__ = 'races'
@@ -44,6 +57,12 @@ class Race(db.Model, SerializerMixin):
     driver_races = db.relationship(
         'DriverRace', backref='race', cascade='all, delete-orphan')
     drivers = association_proxy('driver_races', 'driver')
+
+    @validates('fastest_time')
+    def validate_fastest_time(self, key, ft):
+        if type(ft) != float or len(str(ft)) != 7:
+            raise ValueError("Invalid time")
+        return ft
 
 
 class DriverRace(db.Model, SerializerMixin):

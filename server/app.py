@@ -49,12 +49,12 @@ class Drivers(Resource):
     def post(self):
         data = request.get_json()
         
-        if data['driver_image'] == None or data['driver_image'] == '':
-            new_driver = Driver(
-            name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = 'https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
-        else:
-            new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = data['driver_image'])
+        
         try:
+            if data['driver_image'] == None or data['driver_image'] == '':
+                new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = 'https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
+            else:
+                new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = data['driver_image'])
             db.session.add(new_driver)
             db.session.commit()
         except IntegrityError:
@@ -124,6 +124,18 @@ class Races(Resource):
             r_list.append(r_dict)
         return make_response(r_list, 200)
 
+    def post(self):
+        data = request.get_json()
+        try:
+            new_race = Race(location=data['location'], fastest_time = data['fastest_time'], track_image = data['track_image'])
+            db.session.add(new_race)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            return make_response({'error': 'All inputs need valid data'})
+
+        race_dict = new_race.to_dict()
+        return make_response(race_dict, 201)
 
 api.add_resource(Races, '/races')
 
