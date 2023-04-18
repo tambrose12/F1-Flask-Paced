@@ -48,13 +48,14 @@ class Drivers(Resource):
 
     def post(self):
         data = request.get_json()
-        
-        
+
         try:
             if data['driver_image'] == None or data['driver_image'] == '':
-                new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = 'https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
+                new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'],
+                                    driver_image='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
             else:
-                new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = data['driver_image'])
+                new_driver = Driver(name=data['name'], car_number=data['car_number'],
+                                    team=data['team'], driver_image=data['driver_image'])
             db.session.add(new_driver)
             db.session.commit()
         except IntegrityError:
@@ -127,7 +128,8 @@ class Races(Resource):
     def post(self):
         data = request.get_json()
         try:
-            new_race = Race(location=data['location'], fastest_time = data['fastest_time'], track_image = data['track_image'])
+            new_race = Race(
+                location=data['location'], fastest_time=data['fastest_time'], track_image=data['track_image'])
             db.session.add(new_race)
             db.session.commit()
         except IntegrityError:
@@ -136,6 +138,7 @@ class Races(Resource):
 
         race_dict = new_race.to_dict()
         return make_response(race_dict, 201)
+
 
 api.add_resource(Races, '/races')
 
@@ -185,17 +188,17 @@ api.add_resource(RaceByID, '/races/<int:id>')
 
 class DriverRaces(Resource):
     def get(self):
-        dr_list = []
-        for dr in DriverRace.query.all():
-            dr_dict = {
-                'id': dr.id,
-                'driver_id': dr.driver_id,
-                'race_id': dr.race_id,
-                'time': dr.time
-            }
-            dr_list.append(dr_dict)
+        dr_list = [dr.to_dict() for dr in DriverRace.query.all()]
+        # for dr in DriverRace.query.all():
+        #     dr_dict = {
+        #         'id': dr.id,
+        #         'driver_id': dr.driver_id,
+        #         'race_id': dr.race_id,
+        #         'time': dr.time
+        #     }
+        #     dr_list.append(dr_dict)
         return make_response(dr_list, 200)
-    
+
     def post(self):
         data = request.get_json()
         new_drace = DriverRace(
@@ -210,7 +213,6 @@ class DriverRaces(Resource):
 
         driverace_dict = new_drace.to_dict()
         return make_response(driverace_dict, 201)
-
 
 
 api.add_resource(DriverRaces, '/driver_races')

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Switch, BrowserRouter, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from "./Home";
 import Drivers from "./Drivers"
 import DriverCard from "./DriverCard"
 import RaceCard from "./RaceCard"
 import Races from './Races'
+import Stats from './StatsList'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
   const [drivers, setDrivers] = useState([])
   const [races, setRaces] = useState([])
+  const [stats, setStats] = useState([])
 
   useEffect(() => {
     fetch('/drivers')
@@ -22,21 +24,36 @@ function App() {
 
   useEffect(() => {
     fetch('/races')
-      .then(r => r.json()) 
+      .then(r => r.json())
       .then(setRaces)
+  }, [])
+
+  useEffect(() => {
+    fetch('/driver_races')
+      .then(r => r.json())
+      .then(setStats)
   }, [])
 
   let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} />)
 
-  let raceCards = races.map(race => <RaceCard key={race.id} race={race}/>)
+  let raceCards = races.map(race => <RaceCard key={race.id} race={race} />)
 
   return (
     <div>
-      <main>
-        <Home />
-        <Drivers driverCards={driverCards} />
-        <Races raceCards={raceCards} />
-      </main>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/drivers">
+          <Drivers driverCards={driverCards} />
+        </Route>
+        <Route exact path="/races">
+          <Races raceCards={raceCards} />
+        </Route>
+        <Route exact path="/stats">
+          <Stats stats={stats} />
+        </Route>
+      </Switch>
     </div>
   )
 }

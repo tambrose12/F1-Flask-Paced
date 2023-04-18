@@ -1,13 +1,14 @@
 import React from "react";
 import RaceCard from "./RaceCard"
+import Header from "./Header";
 
-function Races({raceCards}){
+function Races({ raceCards }) {
     return (
-        <p>
+        <div>
+            <Header />
             {raceCards}
-        </p>
+        </div>
     )
 }
 
 export default Races
-    

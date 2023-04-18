@@ -1,13 +1,14 @@
 import React from "react";
-import DriverCard from "./DriverCard";
+import Header from "./Header";
 
 
 function Drivers({ driverCards }) {
 
     return (
-        <p>
+        <div>
+            <Header />
             {driverCards}
-        </p>
+        </div>
     )
 }
 

@@ -37,12 +37,13 @@ class Driver(db.Model, SerializerMixin):
         elif car_num < 1 or car_num > 99:
             raise ValueError("Invalid car number")
         return car_num
-    
+
     @validates('team')
     def validate_team(self, key, t):
         if t not in ['McLaren', 'Ferrari', 'Aston Martin', 'Alpine', 'Alpha Tauri', 'Williams', 'Mercedes', 'Red Bull', 'Alfa Romeo', 'Haas F1 Team']:
             raise ValueError("Invalid team")
         return t
+
 
 class Race(db.Model, SerializerMixin):
     __tablename__ = 'races'
@@ -68,7 +69,8 @@ class Race(db.Model, SerializerMixin):
 class DriverRace(db.Model, SerializerMixin):
     __tablename__ = 'driver_races'
 
-    serialize_rules = ('-driver', '-race')
+    serialize_rules = ('-driver.driver_races', '-driver.races',
+                       '-race.driver_races', '-race.drivers', '-driver.driver_image', '-driver.id', '-race.track_image', '-race.id')
 
     id = db.Column(db.Integer, primary_key=True)
     driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'))

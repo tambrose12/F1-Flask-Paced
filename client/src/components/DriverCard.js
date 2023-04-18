@@ -7,6 +7,7 @@ function DriverCard({ driver }) {
             <h3>{driver.name}</h3>
             <h4>Number {driver.car_number}</h4>
             <h4>Team: {driver.team}</h4>
+            <img src={driver.driver_image} />
         </div>
     )
 }
