@@ -47,9 +47,12 @@ class Drivers(Resource):
 
     def post(self):
         data = request.get_json()
-        new_driver = Driver(
-            name=data['name'], car_number=data['car_number'], team=data['team'])
-
+        
+        if data['driver_image'] == None or data['driver_image'] == '':
+            new_driver = Driver(
+            name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = 'https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
+        else:
+            new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image = data['driver_image'])
         try:
             db.session.add(new_driver)
             db.session.commit()
@@ -178,6 +181,22 @@ class DriverRaces(Resource):
             }
             dr_list.append(dr_dict)
         return make_response(dr_list, 200)
+    
+    def post(self):
+        data = request.get_json()
+        new_drace = DriverRace(
+            driver_id=data['driver_id'], race_id=data['race_id'], time=data['time'])
+
+        try:
+            db.session.add(new_drace)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            return make_response({'error': 'All inputs need valid data'})
+
+        driverace_dict = new_drace.to_dict()
+        return make_response(driverace_dict, 201)
+
 
 
 api.add_resource(DriverRaces, '/driver_races')
