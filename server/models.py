@@ -61,7 +61,7 @@ class Race(db.Model, SerializerMixin):
 
     @validates('fastest_time')
     def validate_fastest_time(self, key, ft):
-        if type(ft) != float or len(str(ft)) != 7:
+        if len(str(ft)) >= 7:
             raise ValueError("Invalid time")
         return ft
 

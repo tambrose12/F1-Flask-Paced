@@ -38,6 +38,13 @@ function App() {
 
   let raceCards = races.map(race => <RaceCard key={race.id} race={race} />)
 
+  const addDriverToState = newDriver => {
+    setDrivers([...drivers, newDriver])
+  }
+
+  const addRaceToState = newRace => {
+    setRaces([...races, newRace])
+  }
   return (
     <div>
       <Switch>
@@ -45,10 +52,10 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/drivers">
-          <Drivers driverCards={driverCards} />
+          <Drivers driverCards={driverCards} addDriverToState = {addDriverToState}/>
         </Route>
         <Route exact path="/races">
-          <Races raceCards={raceCards} />
+          <Races raceCards={raceCards} addRaceToState={addRaceToState}/>
         </Route>
         <Route exact path="/stats">
           <Stats stats={stats} />
