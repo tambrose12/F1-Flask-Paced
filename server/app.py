@@ -101,7 +101,7 @@ class DriverByID(Resource):
         db.session.delete(driver)
         db.session.commit()
 
-        return make_response('Apartment Deleted', 201)
+        return make_response('Driver Deleted', 201)
 
 
 api.add_resource(DriverByID, '/drivers/<int:id>')
@@ -129,6 +129,38 @@ class RaceByID(Resource):
         if r == None:
             return make_response({'error': 'Race not found'}, 404)
         return make_response(r.to_dict(), 200)
+
+    def patch(self, id):
+        data = request.get_json()
+        race = Race.query.filter_by(id=id).first()
+        if race == None:
+            return make_response({'error': 'Race not found'}, 404)
+
+        for attr in data:
+            setattr(race, attr, data[attr])
+
+        try:
+            db.session.add(race)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            return make_response({'error': 'validation errors'}, 422)
+
+        response_dict = race.to_dict()
+
+        response = make_response(response_dict, 200)
+
+        return response
+
+    def delete(seld, id):
+        race = Race.query.filter_by(id=id).first()
+        if race == None:
+            return make_response({'error': 'Race not found'}, 404)
+
+        db.session.delete(race)
+        db.session.commit()
+
+        return make_response('Race Deleted', 201)
 
 
 api.add_resource(RaceByID, '/races/<int:id>')

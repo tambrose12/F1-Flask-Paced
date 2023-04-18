@@ -13,18 +13,23 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
+
 class Driver(db.Model, SerializerMixin):
     __tablename__ = 'drivers'
 
     serialize_rules = ('-driver_races', '-races')
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    car_number = db.Column(db.Integer)
-    team = db.Column(db.String)
+    name = db.Column(db.String, nullable=False)
+    car_number = db.Column(db.Integer, nullable=False)
+    team = db.Column(db.String, nullable=False)
+    driver_image = db.Column(
+        db.String, default='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
 
-    driver_races = db.relationship('DriverRace', backref = 'driver', cascade = 'all, delete-orphan')
-    races = association_proxy('driver_races','race')
+    driver_races = db.relationship(
+        'DriverRace', backref='driver', cascade='all, delete-orphan')
+    races = association_proxy('driver_races', 'race')
+
 
 class Race(db.Model, SerializerMixin):
     __tablename__ = 'races'
@@ -32,11 +37,14 @@ class Race(db.Model, SerializerMixin):
     serialize_rules = ('-driver_races', '-drivers')
 
     id = db.Column(db.Integer, primary_key=True)
-    location = db.Column(db.String)
-    fastest_time = db.Column(db.Float)
+    location = db.Column(db.String, nullable=False)
+    fastest_time = db.Column(db.Float, nullable=False)
+    track_image = db.Column(db.String, nullable=False)
 
-    driver_races = db.relationship('DriverRace', backref = 'race', cascade = 'all, delete-orphan')
-    drivers = association_proxy('driver_races','driver')
+    driver_races = db.relationship(
+        'DriverRace', backref='race', cascade='all, delete-orphan')
+    drivers = association_proxy('driver_races', 'driver')
+
 
 class DriverRace(db.Model, SerializerMixin):
     __tablename__ = 'driver_races'
