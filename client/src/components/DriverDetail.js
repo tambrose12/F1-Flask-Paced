@@ -19,9 +19,11 @@ function DriverDetail() {
     return (
         <div>
             <Header />
-            <h1>{driver.name} #{driver.car_number}</h1>
-            <img src={driver.driver_image} />
-            <h2> Team:{driver.team}</h2>
+            <div className="driverDetail">
+                <h1>{driver.name} #{driver.car_number}</h1>
+                <img src={driver.driver_image} />
+                <h2> Team:{driver.team}</h2>
+            </div>
         </div>
     )
 }

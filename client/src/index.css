@@ -5,14 +5,14 @@ body,
     justify-content: center;
     align-items: center;
     /* height: 100vh; */
-    background-color: white;
+    background-color: rgb(35, 34, 34);
 }
 
 .header {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
     /* background-color: rgb(148, 39, 39); */
 }
@@ -21,7 +21,7 @@ body,
     padding: 0.6em 2em;
     border-radius: 8px;
     color: black;
-    background-color: white;
+    background-color: rgb(179, 173, 173);
     font-size: 1.1em;
     border: 3px solid black;
     cursor: pointer;
@@ -46,7 +46,8 @@ span {
     color: white;
 } */
 
-*/ add red detailing to headings and links h1,
+/* add red detailing to headings and links  */
+h1,
 h2,
 h3,
 h4,
@@ -54,6 +55,13 @@ h5,
 h6,
 a {
     color: red;
+}
+
+#homeDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
 }
 
 .driverCard,
@@ -65,7 +73,7 @@ a {
     min-height: 300px;
     object-fit: cover;
     margin: 25px;
-    background-color: grey;
+    background-color: rgb(179, 173, 173);
     padding: 15px;
     border-radius: 8px;
 }
@@ -116,6 +124,26 @@ h4 {
     justify-content: center;
 }
 
+.driverDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.driverDetail img {
+    width: 350px;
+    height: 500px;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    min-height: 300px;
+    object-fit: cover;
+}
+
+
 .statTable {
     /* display: flex;
     flex-direction: column; */
@@ -145,6 +173,7 @@ input {
     margin-left: 500px;
     margin-right: 500px;
     padding: 100px;
+    color: white
 }
 
 .formDiv h3 {
@@ -173,7 +202,7 @@ form {
     background-color: #f2f2f2;
 }
 
-#stats tr:hover {
+#stats tr {
     background-color: #ddd;
 }
 

@@ -6,7 +6,9 @@ function Home() {
     return (
         <div>
             <Header />
-            <h1>Welcome, Race Fans!</h1>
+            <div id='homeDiv'>
+                <h1>Welcome, Race Fans!</h1>
+            </div>
         </div>
     )
 }
