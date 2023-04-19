@@ -7,8 +7,13 @@ function Races({ raceCards, addRaceToState }) {
     return (
         <div>
             <Header />
-            <AddNewRace addRaceToState = {addRaceToState}/>
-            {raceCards}
+            <br />
+            <div className="raceList">
+                {raceCards}
+            </div>
+            <div className="formDiv">
+                <AddNewRace addRaceToState={addRaceToState} />
+            </div>
         </div>
     )
 }

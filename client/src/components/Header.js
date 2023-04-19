@@ -5,11 +5,11 @@ function Header() {
 
 
     return (
-        <header>
-            <NavLink exact to="/">Home</NavLink>
-            <NavLink exact to="/drivers">Drivers</NavLink>
-            <NavLink exact to="/races">Races</NavLink>
-            <NavLink exact to="/stats">Stats</NavLink>
+        <header className='header'>
+            <NavLink className="button" exact to="/">Home</NavLink>
+            <NavLink className="button" exact to="/drivers">Drivers</NavLink>
+            <NavLink className="button" exact to="/races">Races</NavLink>
+            <NavLink className="button" exact to="/stats">Stats</NavLink>
         </header>
     )
 }

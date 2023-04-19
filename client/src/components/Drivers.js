@@ -19,8 +19,10 @@ function Drivers({ driverCards, addDriverToState, onEditDriver, onUpdateDriver, 
         <div>
             <Header />
             <br />
+            <div className="driverList">
+                {driverCards}
+            </div>
             {renderDriverForm()}
-            {driverCards}
         </div>
     )
 }

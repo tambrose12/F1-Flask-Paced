@@ -77,7 +77,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className="app">
       <Route path='/drivers/:id' >
         <DriverDetail />
       </Route>
