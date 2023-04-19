@@ -7,10 +7,10 @@ function Stat({ stat }) {
         <tr>
             <td>{stat.driver.name}</td>
             <td>{stat.driver.car_number}</td>
-            <td>{stat.time}</td>
+            <td>{parseFloat(stat.time).toFixed(3)}</td>
             <td>{stat.driver.team}</td>
             <td>{stat.race.location}</td>
-            <td>{stat.race.fastest_time}</td>
+            <td>{parseFloat(stat.race.fastest_time).toFixed(3)}</td>
         </tr>
     );
 }

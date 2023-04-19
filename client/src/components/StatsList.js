@@ -1,8 +1,9 @@
 import React from "react";
 import Stat from "./Stat";
 import Header from "./Header"
+import AddNewStat from "./AddNewStat"
 
-function StatsList({ stats }) {
+function StatsList({ stats, addDriverRaceToState }) {
 
     const renderStats = stats.map(stat => {
         return <Stat key={stat.id} stat={stat} />
@@ -21,7 +22,7 @@ function StatsList({ stats }) {
                             Car Number
                         </th>
                         <th>
-                            Driver Best Lap (seconds)
+                            Best Lap (seconds)
                         </th>
                         <th>
                             Team
@@ -36,6 +37,7 @@ function StatsList({ stats }) {
                     {renderStats}
                 </tbody>
             </table>
+            <AddNewStat addDriverRaceToState = {addDriverRaceToState} />
 
         </div>
     )

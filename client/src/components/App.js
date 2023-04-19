@@ -8,13 +8,14 @@ import RaceCard from "./RaceCard"
 import Races from './Races'
 import Stats from './StatsList'
 
-
 function App() {
   // Code goes here!
 
   const [drivers, setDrivers] = useState([])
   const [races, setRaces] = useState([])
   const [stats, setStats] = useState([])
+  const [driverToEdit, setDriverToEdit] = useState(null)
+  
 
   useEffect(() => {
     fetch('/drivers')
@@ -34,7 +35,22 @@ function App() {
       .then(setStats)
   }, [])
 
-  let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} />)
+  const onUpdateDriver = (updatedDriver) => {
+    setDrivers(drivers => drivers.map(originalDriver => {
+        if(originalDriver.id === updatedDriver.id) {
+        return updatedDriver
+        } else {
+        return originalDriver
+        }
+    }))
+    setDriverToEdit(null)
+    }
+
+  const onEditDriver = (driverToEdit) => {
+    setDriverToEdit(driverToEdit)
+  }
+
+  let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} onEditDriver={onEditDriver} onUpdateDriver={onUpdateDriver}/>)
 
   let raceCards = races.map(race => <RaceCard key={race.id} race={race} />)
 
@@ -45,6 +61,11 @@ function App() {
   const addRaceToState = newRace => {
     setRaces([...races, newRace])
   }
+
+  const addDriverRaceToState = newDriverRace => { 
+    setStats([...stats, newDriverRace])
+  }
+
   return (
     <div>
       <Switch>
@@ -52,13 +73,13 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/drivers">
-          <Drivers driverCards={driverCards} addDriverToState = {addDriverToState}/>
+          <Drivers driverCards={driverCards} addDriverToState = {addDriverToState} onUpdateDriver = {onUpdateDriver} onEditDriver={onEditDriver} driverToEdit={driverToEdit}/>
         </Route>
         <Route exact path="/races">
           <Races raceCards={raceCards} addRaceToState={addRaceToState}/>
         </Route>
         <Route exact path="/stats">
-          <Stats stats={stats} />
+          <Stats stats={stats} addDriverRaceToState={addDriverRaceToState}/>
         </Route>
       </Switch>
     </div>

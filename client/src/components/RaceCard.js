@@ -5,8 +5,8 @@ function RaceCard({ race }) {
     return (
         <div>
             <p>{race.location}</p>
-            <p>{race.fastest_time}</p>
-            <img src={race.track_image} />
+            <p>{parseFloat(race.fastest_time).toFixed(3)}</p>
+            <img src={race.track_image} alt={race.location}/>
         </div>
     )
 }

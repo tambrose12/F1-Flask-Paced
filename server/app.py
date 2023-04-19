@@ -129,7 +129,7 @@ class Races(Resource):
         data = request.get_json()
         try:
             new_race = Race(
-                location=data['location'], fastest_time=data['fastest_time'], track_image=data['track_image'])
+                location=data['location'], fastest_time= data['fastest_time'], track_image=data['track_image'])
             db.session.add(new_race)
             db.session.commit()
         except IntegrityError:
