@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Routes } from "react-router-dom";
 import Header from './Header';
 import Home from "./Home";
 import Drivers from "./Drivers"
@@ -7,6 +7,8 @@ import DriverCard from "./DriverCard"
 import RaceCard from "./RaceCard"
 import Races from './Races'
 import Stats from './StatsList'
+import DriverDetail from "./DriverDetail";
+
 
 function App() {
   // Code goes here!
@@ -46,11 +48,16 @@ function App() {
     setDriverToEdit(null)
     }
 
+  const removeDriverfromState = (deleteDriverId) => {
+    setDrivers(drivers => drivers.filter(driver => {
+      return driver.id != deleteDriverId}))
+  }
+
   const onEditDriver = (driverToEdit) => {
     setDriverToEdit(driverToEdit)
   }
 
-  let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} onEditDriver={onEditDriver} onUpdateDriver={onUpdateDriver}/>)
+  let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} onEditDriver={onEditDriver} onUpdateDriver={onUpdateDriver} removeDriverfromState={removeDriverfromState}/>)
 
   let raceCards = races.map(race => <RaceCard key={race.id} race={race} />)
 
@@ -68,6 +75,9 @@ function App() {
 
   return (
     <div>
+       <Route path= '/drivers/:id' >
+          <DriverDetail/>
+       </Route>
       <Switch>
         <Route exact path="/">
           <Home />
