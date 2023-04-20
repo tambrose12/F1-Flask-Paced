@@ -50,7 +50,7 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
                     </tbody>
                 </table>
             </div>
-            <h2 id="idHeader">Drivers and Tracks:</h2>
+            <h1 id="idHeader">Drivers and Tracks</h1>
             <div className="idTables">
                 <div className="statTable">
                     <table className="stats">

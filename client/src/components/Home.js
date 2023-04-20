@@ -2,12 +2,14 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Header from "./Header"
 
+
 function Home() {
     return (
         <div>
             <Header />
             <div id='homeDiv'>
-                <h1>Welcome, Race Fans!</h1>
+                <h1 id='homeH1'>WELCOME TO FLASK-PACED FI RACING</h1>
+                {/* <img src="https://wallpapercave.com/wp/VR4eThm.jpg " alt="f1 image" /> */}
             </div>
         </div>
     )

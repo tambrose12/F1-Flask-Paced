@@ -28,15 +28,28 @@ function RaceDetail({ stats }) {
 
 
     return (
-        <div className="raceDetail">
+        <div>
             <Header />
-            <h1>{race.location}</h1>
-            <img src={race.track_image} alt={race.location} />
+            <div className="raceDetail">
+                <div>
+                    <img src={race.track_image} alt={race.location} />
+                </div>
+                <div>
+                    <h1>{race.location}</h1>
+                    <h2>First Grand Prix: {race.first_event}</h2>
+                    <h2>Track Length: {race.track_length} km</h2>
+                    <h2>Laps: {race.laps}</h2>
+                </div>
+                <br />
+            </div>
+            <h2>About the Track</h2>
+            <p className="bio">{race.details}</p>
+
             <br />
 
-            <h3> Track Stats </h3>
+            <h1> Track Stats </h1>
             <div className="statTable">
-                <table className="stats">
+                <table className="stats raceTable">
                     <tbody>
                         <tr>
                             <th>
