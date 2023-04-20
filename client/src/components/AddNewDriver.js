@@ -66,7 +66,7 @@ function AddNewDriver({ addDriverToState }) {
                     <input onChange={(e) => setNewDob(e.target.value)} placeholder="Optional" type="text" name="dob" />
                     <label for="bio"> Enter Driver's Bio: </label>
                     <textarea onChange={(e) => setNewBio(e.target.value)} placeholder="Optional" type="text" name="bio" />
-                    <input type="submit" />
+                    <input className="button" type="submit" />
                 </form>
             </div>
         </div>

@@ -50,7 +50,7 @@ function DriverEditForm({ onUpdateDriver, driverId, driver }) {
                     <input onChange={handleChange} type="text" name="team" value={team} />
                     <label for="driver_image"> Enter Driver Image URL: </label>
                     <input onChange={handleChange} type="text" name="driver_image" value={driver_image} />
-                    <input type="submit" />
+                    <input className="button" type="submit" />
                 </form>
             </div>
         </div>

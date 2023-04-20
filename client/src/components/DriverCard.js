@@ -22,7 +22,7 @@ function DriverCard({ driver, removeDriverfromState }) {
                 <h4>Team: {driver.team}</h4>
                 <img src={driver.driver_image} alt={driver.name} />
             </Link>
-            <button onClick={() => handleDeleteClick(driver.id)}>Ban Driver</button>
+            <button className="button" onClick={() => handleDeleteClick(driver.id)}>Ban Driver</button>
         </div>
     )
 }

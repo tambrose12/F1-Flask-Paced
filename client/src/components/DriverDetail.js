@@ -35,7 +35,7 @@ function DriverDetail({ }) {
                 <h1>{driver.name} #{driver.car_number}</h1>
                 <img src={driver.driver_image} />
                 <h2> Team:{driver.team}</h2>
-                <button onClick={handleEditClick}>Click to Edit Driver</button>
+                <button className="button" onClick={handleEditClick}>Click to Edit Driver</button>
             </div>
             {editForm ? <DriverEditForm onUpdateDriver={onUpdateDriver} driverId={driver.id} driver={driver} /> : <div></div>}
         </div>

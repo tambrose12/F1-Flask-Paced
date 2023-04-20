@@ -11,19 +11,20 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
         return <Stat key={stat.id} stat={stat} />
     })
 
-    const driverStats = drivers.map(driver =>{
+    const driverStats = drivers.map(driver => {
         return <DriverStat key={driver.id} driver={driver} />
-    } )
+    })
 
-    const raceStats = races.map(race =>{
+    const raceStats = races.map(race => {
         return <RaceStat key={race.id} race={race} />
-    } )
+    })
 
     return (
         <div>
             <Header />
             <div className="statTable">
-                <table id="stats">
+                <h1>Stats</h1>
+                <table className="stats">
                     <tbody>
                         <tr>
                             <th>
@@ -49,9 +50,10 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
                     </tbody>
                 </table>
             </div>
-            <h2>Drivers and Tracks:</h2>
-            <div>
-                <table id="stats">
+            <h2 id="idHeader">Drivers and Tracks:</h2>
+            <div className="idTables">
+                <div className="statTable">
+                    <table className="stats">
                         <tbody>
                             <tr>
                                 <th>
@@ -64,10 +66,10 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
                             {driverStats}
                         </tbody>
                     </table>
-            </div>
-            <br/>
-            <div>
-                <table id="stats">
+                </div>
+                <br />
+                <div className="statTable">
+                    <table className="stats">
                         <tbody>
                             <tr>
                                 <th>
@@ -80,8 +82,9 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
                             {raceStats}
                         </tbody>
                     </table>
+                </div>
             </div>
-            <AddNewStat addDriverRaceToState={addDriverRaceToState} drivers={drivers} races={races}/>
+            <AddNewStat addDriverRaceToState={addDriverRaceToState} drivers={drivers} races={races} />
         </div>
     )
 }

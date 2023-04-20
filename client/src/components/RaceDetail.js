@@ -28,38 +28,40 @@ function RaceDetail({ stats }) {
 
 
     return (
-        <div>
+        <div className="raceDetail">
             <Header />
             <h1>{race.location}</h1>
             <img src={race.track_image} alt={race.location} />
             <br />
 
             <h3> Track Stats </h3>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>
-                            Driver
-                        </th>
-                        <th>
-                            Car Number
-                        </th>
-                        <th>
-                            Best Lap (seconds)
-                        </th>
-                        <th>
-                            Team
-                        </th>
-                        <th>
-                            Grand Prix
-                        </th>
-                        <th>
-                            Track Record Lap (seconds)
-                        </th>
-                    </tr>
-                    {renderFilteredStats}
-                </tbody>
-            </table>
+            <div className="statTable">
+                <table className="stats">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Driver
+                            </th>
+                            <th>
+                                Car Number
+                            </th>
+                            <th>
+                                Best Lap (seconds)
+                            </th>
+                            <th>
+                                Team
+                            </th>
+                            <th>
+                                Grand Prix
+                            </th>
+                            <th>
+                                Track Record Lap (seconds)
+                            </th>
+                        </tr>
+                        {renderFilteredStats}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

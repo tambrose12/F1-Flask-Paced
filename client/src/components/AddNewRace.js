@@ -46,7 +46,7 @@ function AddNewRace({ addRaceToState }) {
                 <input onChange={(e) => setFastestTime(parseFloat(e.target.value))} type="text" name="fastest_time" />
                 <label for="track_image"> Enter Image URL: </label>
                 <input onChange={(e) => setNewImage(e.target.value)} type="text" name="track_image" />
-                <input type="submit" />
+                <input className="button" type="submit" />
             </form>
         </div>
 
