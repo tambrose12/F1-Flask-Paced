@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { __RouterContext } from 'react-router';
 
-function DriverEditForm({ driverToEdit, onUpdateDriver }) {
-    const [formData, setFormData] = useState(driverToEdit)
+function DriverEditForm({ onUpdateDriver, driverId, driver }) {
+    const [formData, setFormData] = useState(driver)
 
     const { name, car_number, team, driver_image } = formData
 
     useEffect(() => {
-        fetch(`/drivers/${driverToEdit.id}`)
+        fetch(`/drivers/${driverId}`)
             .then(r => r.json())
-            .then(driver => setFormData(driver))
-    }, [driverToEdit.id])
+            .then(driver => {
+                setFormData(driver)
+            })
+    }, [driverId])
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -20,7 +22,7 @@ function DriverEditForm({ driverToEdit, onUpdateDriver }) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        fetch(`/drivers/${driverToEdit.id}`, {
+        fetch(`/drivers/${driver.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

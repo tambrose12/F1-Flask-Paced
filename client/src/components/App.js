@@ -11,12 +11,10 @@ import RaceDetail from "./RaceDetail";
 
 
 function App() {
-  // Code goes here!
 
   const [drivers, setDrivers] = useState([])
   const [races, setRaces] = useState([])
   const [stats, setStats] = useState([])
-  const [driverToEdit, setDriverToEdit] = useState(null)
 
 
   useEffect(() => {
@@ -37,16 +35,6 @@ function App() {
       .then(setStats)
   }, [])
 
-  const onUpdateDriver = (updatedDriver) => {
-    setDrivers(drivers => drivers.map(originalDriver => {
-      if (originalDriver.id === updatedDriver.id) {
-        return updatedDriver
-      } else {
-        return originalDriver
-      }
-    }))
-    setDriverToEdit(null)
-  }
 
   const removeDriverfromState = (deleteDriverId) => {
     setDrivers(drivers => drivers.filter(driver => {
@@ -54,11 +42,8 @@ function App() {
     }))
   }
 
-  const onEditDriver = (driverToEdit) => {
-    setDriverToEdit(driverToEdit)
-  }
 
-  let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} onEditDriver={onEditDriver} onUpdateDriver={onUpdateDriver} removeDriverfromState={removeDriverfromState} />)
+  let driverCards = drivers.map(driver => <DriverCard key={driver.id} driver={driver} removeDriverfromState={removeDriverfromState} />)
 
   let raceCards = races.map(race => <RaceCard key={race.id} race={race} />)
 
@@ -89,7 +74,7 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/drivers">
-          <Drivers driverCards={driverCards} addDriverToState={addDriverToState} onUpdateDriver={onUpdateDriver} onEditDriver={onEditDriver} driverToEdit={driverToEdit} />
+          <Drivers driverCards={driverCards} addDriverToState={addDriverToState} />
         </Route>
         <Route exact path="/races">
           <Races raceCards={raceCards} addRaceToState={addRaceToState} />

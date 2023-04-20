@@ -3,17 +3,8 @@ import Header from "./Header";
 import AddNewDriver from "./AddNewDriver";
 import DriverEditForm from "./DriverEditForm"
 
-function Drivers({ driverCards, addDriverToState, onEditDriver, onUpdateDriver, driverToEdit }) {
+function Drivers({ driverCards, addDriverToState }) {
 
-    const renderDriverForm = () => {
-        if (driverToEdit) {
-            return (
-                <DriverEditForm driverToEdit={driverToEdit} onUpdateDriver={onUpdateDriver} />
-            )
-        } else {
-            return <AddNewDriver addDriverToState={addDriverToState} />
-        }
-    }
 
     return (
         <div>
@@ -22,7 +13,7 @@ function Drivers({ driverCards, addDriverToState, onEditDriver, onUpdateDriver, 
             <div className="driverList">
                 {driverCards}
             </div>
-            {renderDriverForm()}
+            <AddNewDriver addDriverToState={addDriverToState} />
         </div>
     )
 }
