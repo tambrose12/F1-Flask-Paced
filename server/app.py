@@ -56,15 +56,15 @@ class Drivers(Resource):
         try:
             if data['driver_image'] == None or data['driver_image'] == '':
                 new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'],
-                                    driver_image='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg', country=data['country'], podiums=data['podiums'], dob=data['dob'],bio=data['bio'])
+                                    driver_image='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg', country=data['country'], podiums=data['podiums'], dob=data['dob'], bio=data['bio'])
             else:
                 new_driver = Driver(name=data['name'], car_number=data['car_number'],
-                                    team=data['team'], driver_image=data['driver_image'], country=data['country'], podiums=data['podiums'], dob=data['dob'],bio=data['bio'])
+                                    team=data['team'], driver_image=data['driver_image'], country=data['country'], podiums=data['podiums'], dob=data['dob'], bio=data['bio'])
             db.session.add(new_driver)
             db.session.commit()
-        except IntegrityError: 
+        except IntegrityError:
             db.session.rollback()
-            return make_response ({'error': 'All inputs need valid data'}, 422)
+            return make_response({'error': 'All inputs need valid data'}, 422)
 
         driver_dict = new_driver.to_dict()
         return make_response(driver_dict, 201)
@@ -133,7 +133,7 @@ class Races(Resource):
         data = request.get_json()
         try:
             new_race = Race(
-                location=data['location'], fastest_time= data['fastest_time'], track_image=data['track_image'])
+                location=data['location'], fastest_time=data['fastest_time'], track_image=data['track_image'])
             db.session.add(new_race)
             db.session.commit()
         except:
@@ -192,30 +192,26 @@ api.add_resource(RaceByID, '/races/<int:id>')
 class DriverRaces(Resource):
     def get(self):
         dr_list = [dr.to_dict() for dr in DriverRace.query.all()]
-        # for dr in DriverRace.query.all():
-        #     dr_dict = {
-        #         'id': dr.id,
-        #         'driver_id': dr.driver_id,
-        #         'race_id': dr.race_id,
-        #         'time': dr.time
-        #     }
-        #     dr_list.append(dr_dict)
         return make_response(dr_list, 200)
 
     def post(self):
         data = request.get_json()
-        new_drace = DriverRace(
-            driver_id=data['driver_id'], race_id=data['race_id'], time=data['time'])
-
-        try:
-            db.session.add(new_drace)
-            db.session.commit()
-        except IntegrityError:
+        if data['driver_id'] == None or data['race_id'] == None or data['time'] == None:
             db.session.rollback()
-            return make_response({'error': 'All inputs need valid data'})
+            return make_response({'error': 'All inputs need valid data'}, 422)
+        else:
+            new_drace = DriverRace(
+                driver_id=data['driver_id'], race_id=data['race_id'], time=data['time'])
 
-        driverace_dict = new_drace.to_dict()
-        return make_response(driverace_dict, 201)
+            try:
+                db.session.add(new_drace)
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+                return make_response({'error': 'All inputs need valid data'}, 422)
+
+            driverace_dict = new_drace.to_dict()
+            return make_response(driverace_dict, 201)
 
 
 api.add_resource(DriverRaces, '/driver_races')

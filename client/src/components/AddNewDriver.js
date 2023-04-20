@@ -20,16 +20,16 @@ function AddNewDriver({ addDriverToState }) {
             car_number: newCarNumber,
             team: newTeam,
             driver_image: newImage,
-            country : newCountry,
-            podiums : newPodium,
-            dob : newDob,
-            bio : newBio
+            country: newCountry,
+            podiums: newPodium,
+            dob: newDob,
+            bio: newBio
         }
 
         function handleErrors(response) {
             if (!response.ok) {
                 window.alert("Error: Ensure all fields are valid");
-                throw Error(response.statusText)       
+                throw Error(response.statusText)
             }
             return response.json();
         }
@@ -41,7 +41,7 @@ function AddNewDriver({ addDriverToState }) {
         })
             .then(handleErrors)
             .then(addDriverToState)
-            .catch(error => console.error("Unsuccessful Server Call", error))
+            .catch(error => console.error("Validation Error: Ensure all fields are valid.", error))
         e.target.reset()
     }
 

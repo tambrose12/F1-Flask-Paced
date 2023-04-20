@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 
 function AddNewStat({ addDriverRaceToState }) {
 
-    const [newDriverID, setNewDriverID] = useState(0)
-    const [newRaceID, setNewRaceID] = useState(0)
-    const [newTime, setNewTime] = useState(0.0)
-
+    const [newDriverID, setNewDriverID] = useState('')
+    const [newRaceID, setNewRaceID] = useState('')
+    const [newTime, setNewTime] = useState('')
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -16,13 +15,28 @@ function AddNewStat({ addDriverRaceToState }) {
             time: newTime
         }
 
+        function handleErrors(response) {
+            if (!response.ok) {
+                window.alert("Error: Ensure all fields are valid");
+                throw Error(response.statusText)
+            } else if (newDriverRace.driver_id == null) {
+                window.alert("Error: Ensure all fields are valid");
+                throw Error(response.statusText)
+            } else if (newDriverRace.race_id == null) {
+                window.alert("Error: Ensure all fields are valid");
+                throw Error(response.statusText)
+            }
+            return response.json();
+        }
+
         fetch('/driver_races', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newDriverRace)
         })
-            .then(r => r.json())
+            .then(handleErrors)
             .then(addDriverRaceToState)
+            .catch(error => console.error("Validation Error: Ensure all fields are valid.", error))
         e.target.reset()
     }
 

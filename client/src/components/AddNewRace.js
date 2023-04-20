@@ -17,13 +17,22 @@ function AddNewRace({ addRaceToState }) {
             track_image: newImage
         }
 
+        function handleErrors(response) {
+            if (!response.ok) {
+                window.alert("Error: Ensure all fields are valid");
+                throw Error(response.statusText)
+            }
+            return response.json();
+        }
+
         fetch('/races', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newRace)
         })
-            .then(r => r.json())
+            .then(handleErrors)
             .then(addRaceToState)
+            .catch(error => console.error("Validation Error: Ensure all fields are valid.", error))
         e.target.reset()
     }
 
