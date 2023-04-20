@@ -34,6 +34,7 @@ function DriverEditForm({ onUpdateDriver, driverId, driver }) {
         })
             .then(r => r.json())
             .then(updatedDriver => onUpdateDriver(updatedDriver))
+        window.alert("Driver Updated")
         e.target.reset()
     }
 
