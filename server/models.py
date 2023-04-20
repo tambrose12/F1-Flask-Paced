@@ -25,6 +25,10 @@ class Driver(db.Model, SerializerMixin):
     team = db.Column(db.String, nullable=False)
     driver_image = db.Column(
         db.String, default='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
+    country = db.Column(db.String)
+    podiums = db.Column(db.Integer)
+    dob = db.Column(db.String)
+    bio = db.Column(db.String)
 
     driver_races = db.relationship(
         'DriverRace', backref='driver', cascade='all, delete-orphan')
@@ -54,6 +58,10 @@ class Race(db.Model, SerializerMixin):
     location = db.Column(db.String, nullable=False)
     fastest_time = db.Column(db.Float, nullable=False)
     track_image = db.Column(db.String, nullable=False)
+    # first_event = db.Column(db.Integer, nullable=False)
+    # length = db.Column(db.Float, nullable=False)
+    # laps = db.Column(db.Integer, nullable=False)
+    # details = db.Column(db.String, nullable=False)
 
     driver_races = db.relationship(
         'DriverRace', backref='race', cascade='all, delete-orphan')
@@ -61,8 +69,8 @@ class Race(db.Model, SerializerMixin):
 
     @validates('fastest_time')
     def validate_fastest_time(self, key, ft):
-        if len(str(ft)) >= 7:
-            raise ValueError("Invalid time")
+        if type(ft) != float or ft <= 60.000:
+            raise ValueError("Fastest time must be a float and realistic!")
         return ft
 
 

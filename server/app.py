@@ -41,7 +41,11 @@ class Drivers(Resource):
                 'name': d.name,
                 'car_number': d.car_number,
                 'team': d.team,
-                'driver_image': d.driver_image
+                'driver_image': d.driver_image,
+                'country': d.country,
+                'podiums': d.podiums,
+                'dob': d.dob,
+                'bio': d.bio
             }
             d_list.append(d_dict)
         return make_response(d_list, 200)
@@ -52,15 +56,15 @@ class Drivers(Resource):
         try:
             if data['driver_image'] == None or data['driver_image'] == '':
                 new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'],
-                                    driver_image='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg')
+                                    driver_image='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg', country=data['country'], podiums=data['podiums'], dob=data['dob'],bio=data['bio'])
             else:
                 new_driver = Driver(name=data['name'], car_number=data['car_number'],
-                                    team=data['team'], driver_image=data['driver_image'])
+                                    team=data['team'], driver_image=data['driver_image'], country=data['country'], podiums=data['podiums'], dob=data['dob'],bio=data['bio'])
             db.session.add(new_driver)
             db.session.commit()
-        except IntegrityError:
+        except IntegrityError: 
             db.session.rollback()
-            return make_response({'error': 'All inputs need valid data'})
+            return make_response ({'error': 'All inputs need valid data'}, 422)
 
         driver_dict = new_driver.to_dict()
         return make_response(driver_dict, 201)
@@ -106,7 +110,7 @@ class DriverByID(Resource):
         db.session.delete(driver)
         db.session.commit()
 
-        return make_response('Driver Deleted', 201)
+        return make_response({'message': 'Driver Deleted'}, 201)
 
 
 api.add_resource(DriverByID, '/drivers/<int:id>')
@@ -132,9 +136,8 @@ class Races(Resource):
                 location=data['location'], fastest_time= data['fastest_time'], track_image=data['track_image'])
             db.session.add(new_race)
             db.session.commit()
-        except IntegrityError:
-            db.session.rollback()
-            return make_response({'error': 'All inputs need valid data'})
+        except:
+            return make_response({'error': 'All inputs need valid data'}, 422)
 
         race_dict = new_race.to_dict()
         return make_response(race_dict, 201)
