@@ -80,7 +80,7 @@ function App() {
           <Races raceCards={raceCards} addRaceToState={addRaceToState} />
         </Route>
         <Route exact path="/stats">
-          <Stats stats={stats} addDriverRaceToState={addDriverRaceToState} />
+          <Stats stats={stats} addDriverRaceToState={addDriverRaceToState} drivers={drivers} races={races} />
         </Route>
       </Switch>
     </div>

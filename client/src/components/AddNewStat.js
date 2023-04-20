@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AddNewStat({ addDriverRaceToState }) {
+function AddNewStat({ addDriverRaceToState, drivers, races }) {
 
     const [newDriverID, setNewDriverID] = useState('')
     const [newRaceID, setNewRaceID] = useState('')
@@ -45,9 +45,9 @@ function AddNewStat({ addDriverRaceToState }) {
             <div className="formDiv">
                 <form onSubmit={handleSubmit}>
                     <label for="driver_id"> Enter Driver ID: </label>
-                    <input onChange={(e) => setNewDriverID(parseInt(e.target.value))} type="number" name="driver_id" />
+                    <input onChange={(e) => setNewDriverID(parseInt(e.target.value))} type="number" min='1' max={drivers.length} name="driver_id" />
                     <label for="race_id"> Enter Race ID: </label>
-                    <input onChange={(e) => setNewRaceID(parseInt(e.target.value))} type="number" name="race_id" />
+                    <input onChange={(e) => setNewRaceID(parseInt(e.target.value))} type="number" min='1' max={races.length} name="race_id" />
                     <label for="time"> Enter Time: </label>
                     <input onChange={(e) => setNewTime(e.target.value)} type="text" name="time" />
                     <input type="submit" />

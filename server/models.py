@@ -59,7 +59,7 @@ class Race(db.Model, SerializerMixin):
     fastest_time = db.Column(db.Float, nullable=False)
     track_image = db.Column(db.String, nullable=False)
     first_event = db.Column(db.Integer)
-    length = db.Column(db.Float)
+    track_length = db.Column(db.Float)
     laps = db.Column(db.Integer)
     details = db.Column(db.String)
 

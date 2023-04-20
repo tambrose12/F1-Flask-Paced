@@ -3,7 +3,7 @@ import Stat from "./Stat";
 import Header from "./Header"
 import AddNewStat from "./AddNewStat"
 
-function StatsList({ stats, addDriverRaceToState }) {
+function StatsList({ drivers, races, stats, addDriverRaceToState }) {
 
     const renderStats = stats.map(stat => {
         return <Stat key={stat.id} stat={stat} />
@@ -39,7 +39,7 @@ function StatsList({ stats, addDriverRaceToState }) {
                     </tbody>
                 </table>
             </div>
-            <AddNewStat addDriverRaceToState={addDriverRaceToState} />
+            <AddNewStat addDriverRaceToState={addDriverRaceToState} drivers={drivers} races={races}/>
 
         </div>
     )
