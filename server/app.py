@@ -124,7 +124,11 @@ class Races(Resource):
                 'id': r.id,
                 'location': r.location,
                 'fastest_time': r.fastest_time,
-                'track_image': r.track_image
+                'track_image': r.track_image,
+                'first_event' : r.first_event,
+                'lenght': r.lenght,
+                'laps': r.laps,
+                'details' : r.details
             }
             r_list.append(r_dict)
         return make_response(r_list, 200)
@@ -133,7 +137,7 @@ class Races(Resource):
         data = request.get_json()
         try:
             new_race = Race(
-                location=data['location'], fastest_time=data['fastest_time'], track_image=data['track_image'])
+                location=data['location'], fastest_time=data['fastest_time'], track_image=data['track_image'], first_event=data['first_event'], length=data['length'], laps = data['laps'], details=data['details'])
             db.session.add(new_race)
             db.session.commit()
         except:

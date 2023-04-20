@@ -58,10 +58,10 @@ class Race(db.Model, SerializerMixin):
     location = db.Column(db.String, nullable=False)
     fastest_time = db.Column(db.Float, nullable=False)
     track_image = db.Column(db.String, nullable=False)
-    # first_event = db.Column(db.Integer, nullable=False)
-    # length = db.Column(db.Float, nullable=False)
-    # laps = db.Column(db.Integer, nullable=False)
-    # details = db.Column(db.String, nullable=False)
+    first_event = db.Column(db.Integer)
+    length = db.Column(db.Float)
+    laps = db.Column(db.Integer)
+    details = db.Column(db.String)
 
     driver_races = db.relationship(
         'DriverRace', backref='race', cascade='all, delete-orphan')
