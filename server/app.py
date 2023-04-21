@@ -58,8 +58,8 @@ class Drivers(Resource):
                 new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'],
                                     driver_image='https://mystiquemedicalspa.com/wp-content/uploads/2014/11/bigstock-159411362-Copy-1.jpg', country=data['country'], podiums=data['podiums'], dob=data['dob'], bio=data['bio'])
             else:
-                new_driver = Driver(name=data['name'], car_number=data['car_number'],
-                                    team=data['team'], driver_image=data['driver_image'], country=data['country'], podiums=data['podiums'], dob=data['dob'], bio=data['bio'])
+                new_driver = Driver(name=data['name'], car_number=data['car_number'], team=data['team'], driver_image=data['driver_image'],
+                                    country=data['country'], podiums=data['podiums'], dob=data['dob'], bio=data['bio'])
             db.session.add(new_driver)
             db.session.commit()
         except IntegrityError:
@@ -125,10 +125,10 @@ class Races(Resource):
                 'location': r.location,
                 'fastest_time': r.fastest_time,
                 'track_image': r.track_image,
-                'first_event' : r.first_event,
+                'first_event': r.first_event,
                 'track_length': r.track_length,
                 'laps': r.laps,
-                'details' : r.details
+                'details': r.details
             }
             r_list.append(r_dict)
         return make_response(r_list, 200)
@@ -137,7 +137,7 @@ class Races(Resource):
         data = request.get_json()
         try:
             new_race = Race(
-                location=data['location'], fastest_time=data['fastest_time'], track_image=data['track_image'], first_event=data['first_event'], track_length=data['track_length'], laps = data['laps'], details=data['details'])
+                location=data['location'], fastest_time=float(data['fastest_time']), track_image=data['track_image'], first_event=data['first_event'], track_length=float(data['track_length']), laps=data['laps'], details=data['details'])
             db.session.add(new_race)
             db.session.commit()
         except:
