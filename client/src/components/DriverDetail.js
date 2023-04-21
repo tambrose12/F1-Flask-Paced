@@ -46,7 +46,7 @@ function DriverDetail({ }) {
                 </div>
             </div>
             <br />
-            <h2>About the Driver</h2>
+            <h2 className="h2">About the Driver</h2>
             <p className="bio">{driver.bio}</p>
             <div className="edit">
                 <button className="button" onClick={handleEditClick}>Click to Edit Driver</button>

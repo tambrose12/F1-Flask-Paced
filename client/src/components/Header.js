@@ -6,10 +6,10 @@ function Header() {
 
     return (
         <header className='header'>
-            <NavLink className="button" exact to="/">Home</NavLink>
-            <NavLink className="button" exact to="/drivers">Drivers</NavLink>
-            <NavLink className="button" exact to="/races">Races</NavLink>
-            <NavLink className="button" exact to="/stats">Stats</NavLink>
+            <NavLink className="button" exact to="/">HOME</NavLink>
+            <NavLink className="button" exact to="/drivers">DRIVERS</NavLink>
+            <NavLink className="button" exact to="/races">RACES</NavLink>
+            <NavLink className="button" exact to="/stats">STATS</NavLink>
         </header>
     )
 }

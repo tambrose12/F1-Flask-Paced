@@ -38,7 +38,7 @@ function AddNewRace({ addRaceToState }) {
 
     return (
         <div>
-            <h3>Add a New Race Track</h3>
+            <h2 className="h">Add a New Race Track</h2>
             <form onSubmit={handleSubmit}>
                 <label for="location"> Enter Location: </label>
                 <input onChange={(e) => setNewLocation(e.target.value)} type="text" name="location" />
@@ -46,7 +46,7 @@ function AddNewRace({ addRaceToState }) {
                 <input onChange={(e) => setFastestTime(parseFloat(e.target.value))} type="text" name="fastest_time" />
                 <label for="track_image"> Enter Image URL: </label>
                 <input onChange={(e) => setNewImage(e.target.value)} type="text" name="track_image" />
-                <input className="button" type="submit" />
+                <button className="button" type="submit">Submit Race Track</button>
             </form>
         </div>
 

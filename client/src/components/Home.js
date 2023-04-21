@@ -8,7 +8,7 @@ function Home() {
         <div>
             <Header />
             <div id='homeDiv'>
-                <h1 id='homeH1'>WELCOME TO FLASK-PACED FI RACING</h1>
+                <h1 id='homeH1'>WELCOME TO FLASK-PACED F1 RACING</h1>
                 {/* <img src="https://wallpapercave.com/wp/VR4eThm.jpg " alt="f1 image" /> */}
             </div>
         </div>

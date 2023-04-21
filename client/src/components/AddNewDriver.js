@@ -48,7 +48,7 @@ function AddNewDriver({ addDriverToState }) {
     return (
         <div>
             <div className="formDiv">
-                <h3>Add a New Driver</h3>
+                <h2 className="h">Add a New Driver</h2>
                 <form onSubmit={handleSubmit}>
                     <label for="name"> Enter Driver Name: </label>
                     <input onChange={(e) => setNewName(e.target.value)} type="text" name="name" />
@@ -66,7 +66,7 @@ function AddNewDriver({ addDriverToState }) {
                     <input onChange={(e) => setNewDob(e.target.value)} placeholder="Optional" type="text" name="dob" />
                     <label for="bio"> Enter Driver's Bio: </label>
                     <textarea onChange={(e) => setNewBio(e.target.value)} placeholder="Optional" type="text" name="bio" />
-                    <input className="button" type="submit" />
+                    <button className="button" type="submit">Submit Driver</button>
                 </form>
             </div>
         </div>

@@ -50,7 +50,7 @@ function AddNewStat({ addDriverRaceToState, drivers, races }) {
                     <input onChange={(e) => setNewRaceID(parseInt(e.target.value))} type="number" min='1' max={races.length} name="race_id" />
                     <label for="time"> Enter Time: </label>
                     <input onChange={(e) => setNewTime(e.target.value)} type="text" name="time" />
-                    <input className="button" type="submit" />
+                    <button className="button" type="submit">Submit Stats</button>
                 </form>
             </div>
         </div>

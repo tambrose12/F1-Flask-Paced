@@ -23,7 +23,7 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
         <div>
             <Header />
             <div className="statTable">
-                <h1>Stats</h1>
+                <h1 className="h">Stats</h1>
                 <table className="stats">
                     <tbody>
                         <tr>
@@ -50,7 +50,7 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
                     </tbody>
                 </table>
             </div>
-            <h1 id="idHeader">Drivers and Tracks</h1>
+            <h1 id="idHeader" className="h">Drivers and Tracks</h1>
             <div className="idTables">
                 <div className="statTable">
                     <table className="stats">
@@ -84,6 +84,8 @@ function StatsList({ drivers, races, stats, addDriverRaceToState }) {
                     </table>
                 </div>
             </div>
+            <br />
+            <h1 className="h">Add Driver Stats</h1>
             <AddNewStat addDriverRaceToState={addDriverRaceToState} drivers={drivers} races={races} />
         </div>
     )

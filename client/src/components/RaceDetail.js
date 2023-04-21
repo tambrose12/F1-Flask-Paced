@@ -42,12 +42,12 @@ function RaceDetail({ stats }) {
                 </div>
                 <br />
             </div>
-            <h2>About the Track</h2>
+            <h2 className="h2">About the Track</h2>
             <p className="bio">{race.details}</p>
 
             <br />
 
-            <h1> Track Stats </h1>
+            <h2 className="h2"> Track Stats </h2>
             <div className="statTable">
                 <table className="stats raceTable">
                     <tbody>

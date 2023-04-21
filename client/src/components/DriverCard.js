@@ -11,6 +11,7 @@ function DriverCard({ driver, removeDriverfromState }) {
         })
             .then(r => r.json())
             .then(() => removeDriverfromState(id))
+        window.alert("Driver Banned and Removed From Roster.");
     }
 
     return (
@@ -18,11 +19,12 @@ function DriverCard({ driver, removeDriverfromState }) {
         <div className='driverCard'>
             <Link className='cardLinks' to={`/drivers/${driver.id}`}>
                 <h3>{driver.name}</h3>
-                <h4>Number {driver.car_number}</h4>
+                <h4>Car Number: {driver.car_number}</h4>
                 <h4>Team: {driver.team}</h4>
                 <img src={driver.driver_image} alt={driver.name} />
+                <h3 className="view">View Driver Details</h3>
             </Link>
-            <button className="button" onClick={() => handleDeleteClick(driver.id)}>Ban Driver</button>
+            <button className="banBtn" onClick={() => handleDeleteClick(driver.id)}>Click to Ban Driver</button>
         </div>
     )
 }
