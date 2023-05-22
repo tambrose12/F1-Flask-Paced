@@ -4,6 +4,8 @@
 
 Python, JavaScript, React, Flask, SQLite3, SQLAlchemy, CSS
 
+# Summary
+
 Created a race-fans web application with mock stats to track drivers and races.
 
 Generated back-end with Python and Flask / SQL Alchemy to create databases from the Python models. Front-end built with React.js components and styled with CSS.
@@ -36,6 +38,7 @@ Each table in our database has an id column which serves as the primary key.
 ## Driver
 
 name: Driver's name represented as a string
+
 car_number: Driver's car number represented as an integer
 team: Driver's team represented as a string
 driver_image: Url for the driver's image represented as a string
