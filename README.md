@@ -40,27 +40,41 @@ Each table in our database has an id column which serves as the primary key.
 name: Driver's name represented as a string
 
 car_number: Driver's car number represented as an integer
+
 team: Driver's team represented as a string
+
 driver_image: Url for the driver's image represented as a string
+
 country: Driver's country represented as a string
+
 podiums: Driver's podiums represented as an integer
+
 dob: Driver's date of birth represented as an integer
+
 bio: Driver's bio represented as an integer
 
 ## Race
 
 location: Race's location represented as a string
+
 fastest_time: Fastest time recorded for this race represented as a float
+
 track_image: Url for the Race's image represented as a string
+
 track_length: Length of race represented as a float
+
 first_event: Race's first event represented as a string
+
 laps: Total laps for the race represented as an integer
+
 details: Race details represented as a string
 
 ## DriverRace
 
 driver_id: A foreign key representing the id of the driver assocaited with the join
+
 race_id: A foreign keu representing the id of the race associated with the join
+
 time: Driver's recorded time for the race represented as a float
 
 
